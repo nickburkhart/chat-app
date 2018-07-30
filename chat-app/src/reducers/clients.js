@@ -7,7 +7,19 @@ const INITIAL_STATE = {
 
 const addNewClient = (store, action) => {
 	const { name, sid } = action;
-	const newClients = (store.users || []).concat({ name, sid });
+	let exists = false;
+
+	const newClients = (store.users || [])
+		.map(user => {
+			if (user.name === name) {
+				exists = true;
+				return { ...user, name, sid };
+			}
+			return user;
+		});
+	if (!exists) {
+		newClients.push({ name, sid });
+	}
 	return { ...store, users: newClients };
 };
 
