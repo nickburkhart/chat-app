@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import './App.css';
+import { ChatsContainer } from './containers/ChatsContainer';
 import { NameContainer } from './containers/NameContainer';
 import { UsersContainer } from './containers/UsersContainer';
 import store from './store';
@@ -16,6 +17,7 @@ class App extends Component {
           </header>
           <NameContainer />
           <UsersContainer />
+          <ChatsContainer />
         </div>
       </Provider>
     );

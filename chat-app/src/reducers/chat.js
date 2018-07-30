@@ -2,30 +2,28 @@ import { START_CHAT } from "../actions/actionTypes";
 
 const openChat = (store, client) => {
 	let exists = false;
-	const newChats = Object.keys(store.chats || {})
-		.reduce((chatDict, name) => {
-			if (name === client.name) {
-				chatDict[name] = {
-					...store.chats[name],
+	const newChats = (store.chats || [])
+		.map(chat => {
+			if (chat.name === client.name) {
+				exists = true;
+				return {
+					...chat,
 					sid: client.sid,
 					open: true
 				};
-				exists = true;
-			} else {
-				chatDict = store.chats[name];
 			}
-			return chatDict;
-		}, {});
+			return chat;
+		});
 	if (!exists) {
-		newChats[client.name] = {
+		newChats.push({
 			...client,
 			open: true
-		};
+		});
 	}
-	return { ...store, chats: newChats };
+	return newChats;
 };
 
-export function chatReducer(store = {}, action) {
+export function chatReducer(store = [], action) {
 	switch (action.type) {
 		case START_CHAT:
 			return openChat(store, action.client);
