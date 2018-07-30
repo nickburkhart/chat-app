@@ -1,19 +1,19 @@
-import { JOINED, SET_NAME } from '../actions/actionTypes';
+import { CHANGE_NAME, JOINED, SET_NAME } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
 	current: { name: '' },
-	clients: []
+	users: []
 };
 
 const addNewClient = (store, action) => {
 	const { name, sid } = action;
-	const newClients = (store.clients || []).concat({ name, sid });
-	return { ...store, clients: newClients };
+	const newClients = (store.users || []).concat({ name, sid });
+	return { ...store, users: newClients };
 };
 
 const updateClientName = (store, action) => ({
 	...store,
-	clients: store.clients.map(client => {
+	users: store.users.map(client => {
 		if (client.name === action.oldName) {
 			return { ...client, name: action.newName };
 		}
@@ -35,9 +35,9 @@ export function clientsReducer(store = INITIAL_STATE, action) {
 	switch (action.type) {
 		case CHANGE_NAME:
 			if (store.current.name === action.oldName) {
-				updateCurrentName(store, action.newName);
+				return updateCurrentName(store, action.newName);
 			} else {
-				updateClientName(store, action);
+				return updateClientName(store, action);
 			}
 		case SET_NAME:
 			return updateCurrentName(store, action.name);
