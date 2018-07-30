@@ -22,5 +22,9 @@ def disconnect():
 def joined(name):
 		emit('JOINED', {'name': name, 'sid': request.sid}, broadcast=True)
 
+@socketio.on('CHANGE_NAME')
+def change_name(oldName, newName):
+	emit('CHANGE_NAME', {'old': oldName, 'new': newName}, broadcast=True)
+
 if __name__ == '__main__':
     socketio.run(app)
