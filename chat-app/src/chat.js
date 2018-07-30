@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import { JOINED, CHANGE_NAME } from './actions/actionTypes';
+import { JOINED, CHANGE_NAME, MESSAGE } from './actions/actionTypes';
 
 let socket = null;
 
@@ -24,7 +24,7 @@ export function joinChat(name) {
 
 export function listen(dispatch) {
 	console.log('listen');
-	[ JOINED, CHANGE_NAME ].forEach(eventName => {
+	[ JOINED, CHANGE_NAME, MESSAGE ].forEach(eventName => {
 		socket.on(eventName, (event) => {
 			console.log('event', eventName);
 			dispatch({ type: eventName, ...event });
@@ -32,8 +32,8 @@ export function listen(dispatch) {
 	});
 }
 
-export function sendChat(sid, message) {
-	socket.emit('message', sid, message);
+export function sendChat(from, sid, message) {
+	socket.emit('message', from, sid, message);
 }
 
 

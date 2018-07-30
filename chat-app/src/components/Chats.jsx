@@ -1,12 +1,12 @@
 import React from 'react';
-import { Chat } from './Chat';
+import { ChatContainer } from '../containers/ChatContainer';
 
 export class Chats extends React.PureComponent {
 	render() {
 		return (
 			<div>
 				{(this.props.chats || []).map(chat => (
-					<Chat key={chat.name} {...chat} />
+					<ChatContainer key={chat.name} {...chat} />
 				))}
 			</div>
 		);

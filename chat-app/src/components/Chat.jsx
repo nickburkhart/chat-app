@@ -26,7 +26,7 @@ export class Chat extends React.PureComponent {
 	}
 	_sendMessage = () => {
 		const message = this.messageInput.value;
-		console.log('sending message', message, this.props.name, this.props.sid);
+		this.props.sendMessage({ sid: this.props.sid, text: message });
 		this.messageInput.value = '';
 	}
 	_setMessageInput = ref => this.messageInput = ref;

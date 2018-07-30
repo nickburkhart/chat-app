@@ -26,5 +26,10 @@ def joined(name):
 def change_name(oldName, newName):
 	emit('CHANGE_NAME', {'old': oldName, 'new': newName}, broadcast=True)
 
+@socketio.on('MESSAGE')
+def message(fromName, sid, text):
+	print('message', text, 'from', fromName, 'to', sid)
+	emit('MESSAGE', { 'from': fromName, 'text': text}, room=sid)
+
 if __name__ == '__main__':
     socketio.run(app)
