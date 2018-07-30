@@ -19,7 +19,6 @@ export class Users extends React.PureComponent {
 		);
 	}
 	_handleChat = () => {
-		debugger;
 		const sid = this.users.value;
 		const name = this.users.options[this.users.selectedIndex].text;
 		this.props.startChat({ name, sid });
