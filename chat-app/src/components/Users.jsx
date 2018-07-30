@@ -12,7 +12,7 @@ export class Users extends React.PureComponent {
 						</option>
 					))}
 				</select>
-				<button onClick={this._handleChat}>
+				<button type="button" onClick={this._handleChat}>
 					Chat
 				</button>
 			</form>
@@ -20,6 +20,9 @@ export class Users extends React.PureComponent {
 	}
 	_handleChat = () => {
 		debugger;
+		const sid = this.users.value;
+		const name = this.users.options[this.users.selectedIndex].text;
+		this.props.startChat({ name, sid });
 	}
 	_setUsers = (ref) => this.users = ref;
 }
