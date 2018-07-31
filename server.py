@@ -27,9 +27,8 @@ def change_name(oldName, newName):
 	emit('CHANGE_NAME', {'old': oldName, 'new': newName}, broadcast=True)
 
 @socketio.on('MESSAGE')
-def message(fromName, sid, text):
-	print('message', text, 'from', fromName, 'to', sid)
-	emit('MESSAGE', { 'from': fromName, 'text': text}, room=sid)
+def message(fromUser, toUser, text):
+	emit('MESSAGE', { 'from': fromUser, 'to': toUser, 'text': text}, room=toUser['sid'])
 
 if __name__ == '__main__':
     socketio.run(app)

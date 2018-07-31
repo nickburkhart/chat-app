@@ -12,9 +12,9 @@ const mapDispatchToProps = dispatch => ({
 
 const mergeProps = (storeProps, dispatchProps, ownProps) => ({
 	...ownProps,
-	sendMessage: ({sid, text}) => dispatchProps.sendMessage({
-		from: storeProps.user.name,
-		to: sid,
+	sendMessage: ({to, text}) => dispatchProps.sendMessage({
+		from: storeProps.user,
+		to,
 		text
 	})
 });

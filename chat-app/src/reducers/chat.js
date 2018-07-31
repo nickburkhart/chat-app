@@ -1,8 +1,8 @@
-import { START_CHAT } from "../actions/actionTypes";
+import { START_CHAT, MESSAGE, JOINED } from "../actions/actionTypes";
 
 const openChat = (store, client) => {
 	let exists = false;
-	const newChats = (store.chats || [])
+	const newChats = (store|| [])
 		.map(chat => {
 			if (chat.name === client.name) {
 				exists = true;
@@ -23,10 +23,32 @@ const openChat = (store, client) => {
 	return newChats;
 };
 
+const message = (store, {from, to, text}) => {
+	let found = false;
+	let newStore = (store || []).map(chat => {
+		if (chat.sid === to.sid || chat.name === from.name) {
+			found = true;
+			const newMessages = [...(chat.messages || []), { from: from.name, text }];
+			return { ...chat, messages: newMessages };
+		}
+		return chat;
+	});
+	if (!found) {
+		newStore.push({
+			...from,
+			open: true,
+			messages: [ { from: from.name, text }]
+		});
+	}
+	return newStore;
+};
+
 export function chatReducer(store = [], action) {
 	switch (action.type) {
 		case START_CHAT:
 			return openChat(store, action.client);
+		case MESSAGE:
+			return message(store, action);
 		default:
 			return store;
 	}

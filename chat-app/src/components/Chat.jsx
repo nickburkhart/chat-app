@@ -9,8 +9,8 @@ export class Chat extends React.PureComponent {
 					close
 				</button>
 				<ol>
-					{(this.props.messages || []).map(message => (
-						<li>{message.from}: {message.text}</li>
+					{(this.props.messages || []).map((message, i) => (
+						<li key={i}>{message.from}: {message.text}</li>
 					))}
 				</ol>
 				<label htmlFor={`message${this.props.name}`}>Message:</label>
@@ -26,7 +26,8 @@ export class Chat extends React.PureComponent {
 	}
 	_sendMessage = () => {
 		const message = this.messageInput.value;
-		this.props.sendMessage({ sid: this.props.sid, text: message });
+		const { sid, name } = this.props;
+		this.props.sendMessage({ to: { sid, name },  text: message });
 		this.messageInput.value = '';
 	}
 	_setMessageInput = ref => this.messageInput = ref;

@@ -1,8 +1,9 @@
 import { sendChat } from "../chat";
+import { MESSAGE } from "./actionTypes";
 
 export function sendMessage(dispatch) {
 	return ({ from, to, text}) => {
-		console.log('sending', from, to, text);
-		sendChat(from, to.sid, text);
+		dispatch({ type: MESSAGE, from, to, text });
+		sendChat(from, to, text);
 	};
 }

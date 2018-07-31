@@ -33,7 +33,7 @@ export function listen(dispatch) {
 }
 
 export function sendChat(from, sid, message) {
-	socket.emit('message', from, sid, message);
+	socket.emit(MESSAGE, from, sid, message);
 }
 
 
