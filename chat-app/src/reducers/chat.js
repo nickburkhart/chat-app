@@ -1,4 +1,13 @@
-import { START_CHAT, MESSAGE, JOINED } from "../actions/actionTypes";
+import { START_CHAT, MESSAGE, JOINED, CLOSE_CHAT } from "../actions/actionTypes";
+
+const closeChat = (store, name) => {
+	return (store || []).map(chat => {
+		if (chat.name === name) {
+			return { ...chat, open: false };
+		}
+		return chat;
+	});
+};
 
 const openChat = (store, client) => {
 	let exists = false;
@@ -54,6 +63,8 @@ const updateChatSids = (store, { name, sid }) => {
 
 export function chatReducer(store = [], action) {
 	switch (action.type) {
+		case CLOSE_CHAT:
+			return closeChat(store, action.name);
 		case JOINED:
 			return updateChatSids(store, action);
 		case START_CHAT:
