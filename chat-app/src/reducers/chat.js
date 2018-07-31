@@ -43,8 +43,19 @@ const message = (store, {from, to, text}) => {
 	return newStore;
 };
 
+const updateChatSids = (store, { name, sid }) => {
+	return (store || []).map(chat => {
+		if (chat.name === name) {
+			return { ...chat, sid };
+		}
+		return chat;
+	});
+};
+
 export function chatReducer(store = [], action) {
 	switch (action.type) {
+		case JOINED:
+			return updateChatSids(store, action);
 		case START_CHAT:
 			return openChat(store, action.client);
 		case MESSAGE:
