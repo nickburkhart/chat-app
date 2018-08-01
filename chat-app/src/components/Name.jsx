@@ -2,7 +2,7 @@ import React from 'react';
 import { DebouncedInput } from './DebouncedInput';
 
 export const Name = props => (
-	<form>
+	<div>
 		<label htmlFor="username">Name:</label>
 		<DebouncedInput
 			id="username"
@@ -10,5 +10,5 @@ export const Name = props => (
 			onTextChanged={props.onNameChange}
 			defaultValue={props.value}
 		/>
-	</form>
+	</div>
 );

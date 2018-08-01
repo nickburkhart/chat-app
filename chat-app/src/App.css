@@ -1,28 +1,97 @@
-.App {
-  text-align: center;
+/* colors */
+.chat-section {
+  border: 1px solid #979797;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.close-button {
+  border: 1px solid #007AFF;
+}
+.action-text,
+.close-x {
+  color: #007AFF;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.App-title,
+.chat-header {
+  background-color: #F8F8F8;
 }
 
 .App-title {
+  color: #000;
+}
+
+body {
+  font-family: 'Georgia';
+}
+
+/* layout */
+.App-input {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0 0 20px;
+}
+.App-title {
   font-size: 1.5em;
+  padding: 20px;
+  margin: 0 0 20px;
+  text-align: center;
 }
-
-.App-intro {
-  font-size: large;
+.chats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.close-button {
+  border-radius: 22px;
+  cursor: pointer;
+  height: 22px;
+  transform: rotate(45deg);
+  width: 22px;
+}
+.close-x {
+  display: block;
+  font-size: 28px;
+  margin-left: -5px;
+  margin-top: -10px;
+}
+.chat-close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+}
+.chat-header {
+  align-self: stretch;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  flex-direction: row;
+  padding: 10px;
+  position: relative;
+}
+.chat-section {
+  border-radius: 12px;
+  padding: 0 0 20px;
+  margin: 0 10px;
+  width: 333px;
+}
+.messages {
+  list-style: none;
+  margin: 5px 20px;
+  -webkit-padding-start: 0;
+}
+.message {
+  text-align: left;
+}
+.message-from {
+  font-weight: bold;
+}
+.message-new {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+}
+.message-new-input {
+  flex-grow: 1;
+  padding: 5px;
 }

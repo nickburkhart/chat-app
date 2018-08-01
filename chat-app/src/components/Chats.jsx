@@ -4,7 +4,7 @@ import { ChatContainer } from '../containers/ChatContainer';
 export class Chats extends React.PureComponent {
 	render() {
 		return (
-			<div>
+			<div className='chats'>
 				{(this.props.chats || []).map(chat => (
 					<ChatContainer key={chat.name} {...chat} />
 				))}

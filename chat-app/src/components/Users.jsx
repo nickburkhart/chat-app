@@ -3,7 +3,7 @@ import React from 'react';
 export class Users extends React.PureComponent {
 	render() {
 		return (
-			<form>
+			<div>
 				<label htmlFor="users">Start a Conversation:</label>
 				<select id="users" ref={this._setUsers}>
 					{(this.props.users || []).map(user => (
@@ -15,7 +15,7 @@ export class Users extends React.PureComponent {
 				<button type="button" onClick={this._handleChat}>
 					Chat
 				</button>
-			</form>
+			</div>
 		);
 	}
 	_handleChat = () => {

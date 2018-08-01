@@ -12,11 +12,11 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Chat App</h1>
-          </header>
-          <NameContainer />
-          <UsersContainer />
+          <h1 className="App-title">Chat App</h1>
+          <div className="App-input">
+            <NameContainer />
+            <UsersContainer />
+          </div>
           <ChatsContainer />
         </div>
       </Provider>
